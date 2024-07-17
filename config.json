@@ -1,0 +1,13 @@
+{
+    "url": "https://raw.githubusercontent.com/MCT32/cc-tweaked-update-on-startup/",
+    "branch": "main",
+    "files": [
+        "config.json",
+        "startup.lua",
+        "src/hello.lua"
+    ],
+    "config_files": [
+        "config/msg.txt"
+    ],
+    "entrypoint": "src/hello.lua"
+}
