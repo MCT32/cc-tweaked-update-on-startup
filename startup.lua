@@ -20,7 +20,7 @@ for _, file in ipairs(config.files) do
     print("Downloading " .. file)
     print("From " .. filePath)
 
-    if not os.run({}, "/rom/programs/wget.lua", filePath, file) then
+    if not os.run({}, "/rom/programs/http/wget.lua", filePath, file) then
         print("Error downloading " .. file)
         return
     end
@@ -32,7 +32,7 @@ for _, file in ipairs(config.config_files) do
     if not exists(file) then
         print("Downloading " .. file)
 
-        if not os.run({}, "/rom/programs/wget.lua", filePath, file) then
+        if not os.run({}, "/rom/programs/http/wget.lua", filePath, file) then
             print("Error downloading " .. file)
             return
         end
