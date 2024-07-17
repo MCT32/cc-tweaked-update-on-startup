@@ -14,7 +14,7 @@ end
 
 local url = config.url .. config.branch .. "/"
 
-for file in config.files do
+for _, file in ipairs(config.files) do
     local filePath = url .. file
 
     if not os.run({}, "/rom/programs/wget.lua", filePath, file) then
@@ -23,7 +23,7 @@ for file in config.files do
     end
 end
 
-for file in config.config_files do
+for _, file in ipairs(config.config_files) do
     local filePath = url .. file
 
     if not exists(file) then
