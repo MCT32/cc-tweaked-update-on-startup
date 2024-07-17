@@ -17,6 +17,8 @@ local url = config.url .. config.branch .. "/"
 for _, file in ipairs(config.files) do
     local filePath = url .. file
 
+    print("Downloading " .. file)
+
     if not os.run({}, "/rom/programs/wget.lua", filePath, file) then
         print("Error downloading " .. file)
         return
@@ -27,6 +29,8 @@ for _, file in ipairs(config.config_files) do
     local filePath = url .. file
 
     if not exists(file) then
+        print("Downloading " .. file)
+        
         if not os.run({}, "/rom/programs/wget.lua", filePath, file) then
             print("Error downloading " .. file)
             return
