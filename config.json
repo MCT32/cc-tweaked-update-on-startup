@@ -3,8 +3,8 @@
     "branch": "main",
     "files": [
         "config.json",
-        "startup.lua",
-        "src/hello.lua"
+        "src/hello.lua",
+        "startup.lua"
     ],
     "config_files": [
         "config/msg.txt"
