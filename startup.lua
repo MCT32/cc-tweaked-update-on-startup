@@ -21,10 +21,6 @@ end
 
 print("Updating firmware...")
 
-fs.delete("config.json")
-fs.delete("startup.lua")
-fs.delete("config")
-
 local config, err = fs.open("config.json", "r")
 
 if config == nil then
@@ -38,6 +34,10 @@ if config == nil then
     print("Error parsing config.json: " .. err)
     return
 end
+
+fs.delete("config.json")
+fs.delete("startup.lua")
+fs.delete("config")
 
 local url = config.url .. config.branch .. "/"
 
