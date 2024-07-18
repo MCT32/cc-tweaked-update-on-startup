@@ -1,3 +1,24 @@
+function download(url, dest) do
+    file, err = http.get(url)
+
+    if file == nil then
+        print("Error downloading " .. url .. ": " .. err)
+        return false
+    end
+
+    handle, err = fs.open(dest, "w")
+
+    if handle == nil then
+        print("Error opening " .. dest .. ": " .. err)
+        return false
+    end
+
+    handle.write(file.readAll())
+    file.close()
+    handle.close()
+    return true
+end
+
 local config, err = fs.open("config.json", "r")
 
 if config == nil then
@@ -20,7 +41,7 @@ for _, file in ipairs(config.files) do
     print("Downloading " .. file)
     print("From " .. filePath)
 
-    if not shell.execute("wget", filePath, file) then
+    if not download(filePath, file) then
         print("Error downloading " .. file)
         return
     end
@@ -32,7 +53,7 @@ for _, file in ipairs(config.config_files) do
     if not exists(file) then
         print("Downloading " .. file)
 
-        if not shell.execute("wget", filePath, file) then
+        if not download(filePath, file) then
             print("Error downloading " .. file)
             return
         end
