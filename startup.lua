@@ -21,6 +21,10 @@ end
 
 print("Updating firmware...")
 
+fs.delete("config.json")
+fs.delete("startup.lua")
+fs.delete("config")
+
 local config, err = fs.open("config.json", "r")
 
 if config == nil then
