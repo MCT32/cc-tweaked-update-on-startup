@@ -1,0 +1,6 @@
+.github/*
+config/*
+.configignore
+LICENSE
+README.md
+TODO.md

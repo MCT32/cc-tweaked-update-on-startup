@@ -1,0 +1,40 @@
+name: Update File List
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-file-list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r .github/workflows/requirements.txt
+      
+      - name: Get file list
+        run: |
+          files=$(git ls-files)
+          echo "$files" > file_list.txt
+      
+      - name: Run script
+        run: |
+          python .github/workflows/update_file_list.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add config.json
+          git commit -m 'Update config with file list'
+          git push
