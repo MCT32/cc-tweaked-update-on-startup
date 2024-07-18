@@ -4,7 +4,8 @@
     "files": [
         "config.json",
         "src/hello.lua",
-        "startup.lua"
+        "startup.lua",
+        "version"
     ],
     "config_files": [
         "config/msg.txt"
