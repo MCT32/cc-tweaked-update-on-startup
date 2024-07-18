@@ -31,6 +31,16 @@ jobs:
         run: |
           python .github/workflows/update_file_list.py
 
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff-index --quiet HEAD --; then
+            echo "No changes detected."
+            exit 0  # Exit with success if no changes
+          else
+            echo "Changes detected."
+          fi
+
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions'
