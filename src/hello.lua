@@ -5,12 +5,4 @@ if msg == nil then
     return
 end
 
-msg2, err = fs.open("config/msg2.txt", "r")
-
-if msg2 == nil then
-    print("Error opening msg2.txt: " .. err)
-    return
-end
-
 print(msg.readAll())
-print(msg2.readAll())
