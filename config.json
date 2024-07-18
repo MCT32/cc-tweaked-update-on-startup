@@ -4,12 +4,10 @@
     "files": [
         "config.json",
         "src/hello.lua",
-        "src/troll.lua",
         "startup.lua"
     ],
     "config_files": [
-        "config/msg.txt",
-        "config/msg2.txt"
+        "config/msg.txt"
     ],
     "entrypoint": "src/hello.lua"
 }
