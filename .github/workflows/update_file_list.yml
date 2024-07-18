@@ -35,8 +35,8 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add config.json
-          git commit -m 'Update config with file list'
+          git add config.json || true
+          git commit -m 'Update config with file list' || true
           git push || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
