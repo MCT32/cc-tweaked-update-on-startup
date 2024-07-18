@@ -19,6 +19,8 @@ function download(url, dest)
     return true
 end
 
+print("Updating firmware...")
+
 local config, err = fs.open("config.json", "r")
 
 if config == nil then
@@ -38,9 +40,6 @@ local url = config.url .. config.branch .. "/"
 for _, file in ipairs(config.files) do
     local filePath = url .. file
 
-    print("Downloading " .. file)
-    print("From " .. filePath)
-
     if not download(filePath, file) then
         print("Error downloading " .. file)
         return
@@ -51,14 +50,14 @@ for _, file in ipairs(config.config_files) do
     local filePath = url .. file
 
     if not fs.exists(file) then
-        print("Downloading " .. file)
-
         if not download(filePath, file) then
             print("Error downloading " .. file)
             return
         end
     end
 end
+
+print("Updated!")
 
 if not os.run({}, config.entrypoint) then
     print("Error running " .. config.entrypoint)
