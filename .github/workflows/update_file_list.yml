@@ -38,3 +38,5 @@ jobs:
           git add config.json
           git commit -m 'Update config with file list'
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -15,12 +15,14 @@ config_files = []
 
 for file in file_list:
     if fnmatch.fnmatch(file, 'config/*'):
+        print("Added config file: " + file)
         config_files.append(file)
     else:
         for ignore in ignore_list:
             if fnmatch.fnmatch(file, ignore):
                 break
         else:
+            print("Added file: " + file)
             files.append(file)
             
 config['files'] = files
