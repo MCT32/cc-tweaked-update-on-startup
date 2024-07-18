@@ -35,11 +35,37 @@ if config == nil then
     return
 end
 
+local url = config.url .. config.branch .. "/"
+
+local version, err = http.get(url .. "version")
+local local_version, local_err = fs.open("version", "r")
+
+local update = false
+
+if version == nil then
+    print("Error getting version: " .. err)
+    print("Essuming update is required")
+    update = true
+else
+    if local_version == nil then
+        print("Error: local version is not set")
+        print("Essuming update is required")
+        update = true
+    else
+        local_version = tonumber(local_version.readAll())
+        update = version > local_version
+    end
+end
+
+if not update then
+    print("Already up to date")
+    return
+end
+
 fs.delete("config.json")
 fs.delete("startup.lua")
-fs.delete("config")
-
-local url = config.url .. config.branch .. "/"
+fs.delete("src")
+fs.delete("version")
 
 for _, file in ipairs(config.files) do
     local filePath = url .. file
