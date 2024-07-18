@@ -50,7 +50,7 @@ end
 for _, file in ipairs(config.config_files) do
     local filePath = url .. file
 
-    if not exists(file) then
+    if not fs.exists(file) then
         print("Downloading " .. file)
 
         if not download(filePath, file) then
