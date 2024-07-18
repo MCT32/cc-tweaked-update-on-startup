@@ -1,4 +1,4 @@
-function download(url, dest) do
+function download(url, dest)
     file, err = http.get(url)
 
     if file == nil then
